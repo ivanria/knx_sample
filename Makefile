@@ -1,5 +1,5 @@
 
-PROG		:= knx_task
+PROG		:= knx_sample
 DEBUG		:= 1
 SOURCES		:= $(wildcard *.c)
 OBJECTS		:= $(patsubst %c,%o,$(SOURCES))
@@ -7,7 +7,7 @@ DEPFILES	:= $(patsubst %.c,%.d,$(SOURCES))
 CFLAGS		:= -Wall -Wextra -Wpedantic -D_GNU_SOURCE
 
 ifeq ($(DEBUG), 1)
-		CFLAGS += -g -DDEBUG
+		CFLAGS += -DDEBUG -g
 		LDFLAGS := -g
 else
 		CFLAGS += -O2
