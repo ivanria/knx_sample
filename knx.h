@@ -1,5 +1,5 @@
-#ifndef __KNX_H
-#define __KNX_H
+#ifndef KNX_H
+#define KNX_H
 
 
 /* ==========================================================================*/
@@ -74,4 +74,4 @@ typedef struct {
 // but embedded systems don't always
 
 
-#endif // __KNX_H
+#endif // KNX_H

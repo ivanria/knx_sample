@@ -1,6 +1,8 @@
-#ifndef __FUNC_DEFS_H
-#define __FUNC_DEFS_H
+#ifndef FUNC_DEFS_H
+#define FUNC_DEFS_H
 
+#include <stdint.h>
+#include "knx.h"
 
 KNX_TG_t *parse_line(char *line, KNX_TG_t **tg_p);
 void print_knx_frame(KNX_TG_t *tg);
@@ -11,4 +13,4 @@ float parse_knx_float(uint16_t knx_float);
 const char *get_apci_func_name(uint16_t apci);
 
 
-#endif // __FUNC_DEFS_H
+#endif // FUNC_DEFS_H

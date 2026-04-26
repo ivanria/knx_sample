@@ -26,6 +26,10 @@ int main(void)
 	}
 
 	while ((nread = getline(&line, &len, in_fp)) != -1) {
+		if (line[0] == '\n') {
+			free(line); line = NULL;
+			continue;
+		}
 
 		printf("frame is: %s\n", line);
 		// Parsing line and allocate memory for tg_p
@@ -277,15 +281,6 @@ float parse_knx_float(uint16_t knx_float)
 	return 0.01f * (float)M * (float)(1 << exp);
 }
 
-static const char * const priors_names[] = {
-	"System", "Alarm", "High", "Low",
-};
-
-const char *get_prior_str(uint8_t ctrl)
-{
-	return priors_names[KNX_CTRL_GET_PRIOR(ctrl)];
-}
-
 const char *get_apci_func_name(uint16_t apci)
 {
 	uint16_t func_code = GET_APCI_ACTION(apci);
@@ -310,3 +305,13 @@ const char *get_apci_func_name(uint16_t apci)
 	}
 
 }
+
+static const char * const priors_names[] = {
+	"System", "Alarm", "High", "Low",
+};
+
+const char *get_prior_str(uint8_t ctrl)
+{
+	return priors_names[KNX_CTRL_GET_PRIOR(ctrl)];
+}
+

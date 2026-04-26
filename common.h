@@ -1,5 +1,5 @@
-#ifndef __COMMON_H
-#define __COMMON_H
+#ifndef COMMON_H
+#define COMMON_H
 
 
 #ifdef DEBUG
@@ -26,4 +26,4 @@
 #endif
 
 
-#endif // __COMMON_H
+#endif // COMMON_H
