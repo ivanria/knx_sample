@@ -22,7 +22,7 @@ $(PROG): $(OBJECTS)
 	$(CC) $(CFLAGS) -MMD -MP -c -o $@ $<
 
 
-ifneq ($(MAKECMDGOALS),clean)
+ifeq (0, $(words $(findstring $(MAKECMDGOALS), clean print_vars)))
 -include $(DEPFILES)
 endif
 
@@ -34,4 +34,14 @@ all: $(PROG)
 clean:
 	rm -rf $(OBJECTS) $(PROG) $(DEPFILES)
 
+.PHONY: print_vars
+print_vars:
+	@echo "===print_vars==="
+	@echo "PROG     = $(PROG)"
+	@echo "DEBUG    = $(DEBUG)"
+	@echo "CFLAGS   = $(CFLAGS)"
+	@echo "LDFLAGS  = $(LDFLAGS)"
+	@echo "SOURCES  = $(SOURCES)"
+	@echo "OBJECTS  = $(OBJECTS)"
+	@echo "DEPFILES = $(DEPFILES)"
 
