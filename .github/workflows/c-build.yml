@@ -23,9 +23,9 @@ jobs:
     - name: Build
       run: |
         if [ "${{ matrix.build_type }}" == "debug"]; then
-          make DEBUG=1 V=1
+          make DEBUG=1 V=1 CFLAGS="-Wall -Wextra -Wpedantic -Werror"
         else
-          make V=1
+          make V=1 CFLAGS="-Wall -Wextra -Wpedantic -Werror"
         fi
 
     - name: Run_Valgrind
