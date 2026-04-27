@@ -30,7 +30,7 @@ jobs:
 
     - name: Run_Valgrind
       run: |
-        valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --log-file=valgrind-${{ matrix.build_type }}.txt --error-exitcode=1 ./knx_sample
+        valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --errors-for-leak-kinds=all --log-file=valgrind-${{ matrix.build_type }}.txt --error-exitcode=1 ./knx_sample
 
     - name: Upload_Valgrind_Report
       if: always()
