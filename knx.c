@@ -27,6 +27,7 @@ int main(void)
 
 	while ((nread = getline(&line, &len, in_fp)) != -1) {
 		if (line[0] == '\n') {
+			fprintf(stderr, "line is empty\n");
 			free(line); line = NULL;
 			continue;
 		}
