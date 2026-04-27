@@ -9,8 +9,10 @@
 #include "knx.h"
 #include "func_defs.h"
 
-int main(int argc, char **argv)
+int main(void)
 {
+	// test pointer for valgrind
+	char *test_p = malloc(10);
 	FILE *in_fp;
 	char *line = NULL;
 	size_t len = 0;
