@@ -7,19 +7,43 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        build_type: [ "release", "debug" ]
 
     steps:
     - name: Checkout_code
       uses: actions/checkout@v4
 
-    #- name: Install dependencies
-    #  run: sudo apt-get update && sudo apt-get install - build-essential
+    - name: Install_dependencies
+      run: sudo apt-get update && sudo apt-get install -y valgrind
 
-    - name: Run_Makefile
-      run: make
+    - name: Build
+      run: |
+        if [ "${{ matrix.build_type }}" == "debug"]; then
+          make DEBUG=1 V=1
+        else
+          make V=1
+        fi
 
-    #- name: Run tests
-    #  run: make test
+    - name: Run_Valgrind
+      run: |
+        valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --log-file=valgrind-${{ matrix.build_type }}.txt --error-exitcode=1 ./knx_sample
+
+    - name: Upload_Valgrind_Report
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: valgrind-report-${{ matrix.build_type }}
+        path: valgrind-${{ matrix.build_type }}.txt
+
+    - name: Display_report_summary
+      if: failure()
+      run: |
+        echo "### Valgrind Analysis (${{ matrix.build_type }}) :mag:" >> $GITHUB_STEP_SUMMARY
+        echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+        cat valgrind-${{ matrix.build_type }}.txt >> $GITHUB_STEP_SUMMARY
+        echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
 
