@@ -2,9 +2,7 @@
 
 # KNX Generic Telegram Parser
 
-[![C CI Build Matrix](https://github.com)](https://github.com)
-
-An educational C project designed to parse generic KNX telegrams. The application reads raw data, processes the telegram structure, and extracts key information according to KNX standards.
+An educational C project designed to parse generic KNX telegrams. The application reads ascii data in hex base, processes the telegram structure, and extracts key information according to KNX standards.
 
 ## Features
 - Classic **Makefile** based build system.
