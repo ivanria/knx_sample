@@ -9,7 +9,7 @@
 #include "knx.h"
 #include "func_defs.h"
 
-int main(void)
+int main(int argc, char **argv)
 {
 	FILE *in_fp;
 	char *line = NULL;
