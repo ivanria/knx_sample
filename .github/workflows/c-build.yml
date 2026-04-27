@@ -1,0 +1,25 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout_code
+      uses: actions/checkout@v4
+
+    #- name: Install dependencies
+    #  run: sudo apt-get update && sudo apt-get install - build-essential
+
+    - name: Run_Makefile
+      run: make
+
+    #- name: Run tests
+    #  run: make test
+
