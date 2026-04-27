@@ -1,6 +1,6 @@
 
 PROG		:= knx_sample
-DEBUG		:= 1
+DEBUG		:= 0
 SOURCES		:= $(wildcard *.c)
 OBJECTS		:= $(patsubst %c,%o,$(SOURCES))
 DEPFILES	:= $(patsubst %.c,%.d,$(SOURCES))

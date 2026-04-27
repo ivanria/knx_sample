@@ -281,29 +281,21 @@ float parse_knx_float(uint16_t knx_float)
 	return 0.01f * (float)M * (float)(1 << exp);
 }
 
+static const char * const knx_functions[] = {
+	"GroupValueRead", "GroupValueResponse", "GroupValueWrite",
+	"PhysAddrWrite", "PhysAddrRead", "PhysAddrResponse",
+	"AdcRead", "AdcResponse", "MemoryRead", "MemoryResponse",
+	"MemoryWrite", "UserMessage", "DeviceDescriptorRead",
+	"DeviceDescriptorResponse", "Restart", "Escape",
+};
+
 const char *get_apci_func_name(uint16_t apci)
 {
 	uint16_t func_code = GET_APCI_ACTION(apci);
-	switch (func_code) {
-		case 0x0: return "GroupValueRead"; break;
-		case 0x1: return "GroupValueResponse"; break;
-		case 0x2: return "GroupValueWrite"; break;
-		case 0x3: return "PhysAddrWrite"; break;
-		case 0x4: return "PhysAddrRead"; break;
-		case 0x5: return "PhysAddrResponse"; break;
-		case 0x6: return "AdcRead"; break;
-		case 0x7: return "AdcResponse"; break;
-		case 0x8: return "MemoryRead"; break;
-		case 0x9: return "MemoryResponse"; break;
-		case 0xa: return "MemoryWrite"; break;
-		case 0xb: return "UserMessage"; break;
-		case 0xc: return "DeviceDescriptorRead"; break;
-		case 0xd: return "DeviceDescriptorResponse"; break;
-		case 0xe: return "Restart"; break;
-		case 0xf: return "Escape"; break;
-		default: return "Many other function may be. Total 1024";
+	if (func_code > 0xf) {
+		return "Many other function may be. Total 1024";
 	}
-
+	return knx_functions[func_code];
 }
 
 static const char * const priors_names[] = {
