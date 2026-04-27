@@ -1,4 +1,4 @@
-[![C/C++ CI](https://github.com/ivanria/knx_sample/actions/workflows/c-build.yml/badge.svg)](https://github.com/ivanria/knx_sample/actions/workflows/c-build.yml)
+[![C/C++ CI](https://github.com/ivanria/knx_sample/actions/workflows/c-build.yml/badge.svg?branch=main)](https://github.com/ivanria/knx_sample/actions/workflows/c-build.yml)
 
 # KNX Generic Telegram Parser
 
