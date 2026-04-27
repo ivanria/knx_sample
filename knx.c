@@ -13,6 +13,8 @@ int main(void)
 {
 	// test pointer for valgrind
 	char *test_p = malloc(10);
+	strcpy(test_p, "test\n");
+	////////////////////////////
 	FILE *in_fp;
 	char *line = NULL;
 	size_t len = 0;
